@@ -373,6 +373,43 @@ cc_library(
     alwayslink = 1,
 )
 
+
+cc_library(
+    name = "background_masking_calculator",
+    srcs = ["background_masking_calculator.cc"],
+    visibility = ["//visibility:public"],    
+    deps = [
+        "//mediapipe/framework:calculator_framework",
+        "//mediapipe/framework:calculator_options_cc_proto",
+        "//mediapipe/framework:timestamp",
+        "//mediapipe/framework/port:status",
+        "//mediapipe/framework/deps:file_path",
+        "@com_google_absl//absl/time",
+        "@com_google_absl//absl/strings",
+        "//mediapipe/framework/formats:rect_cc_proto",
+        "//mediapipe/framework/port:ret_check",
+        "//mediapipe/framework/formats:image_frame",
+        "//mediapipe/framework/formats:matrix",
+        "//mediapipe/framework/formats:image_frame_opencv",
+        "//mediapipe/framework/port:opencv_core",
+        "//mediapipe/framework/port:opencv_imgproc",
+        "//mediapipe/framework/port:opencv_imgcodecs", 
+        "//mediapipe/util:resource_util",
+        ]+ select({
+        "//mediapipe/gpu:disable_gpu": [],
+        "//conditions:default": [
+            "//mediapipe/gpu:gl_calculator_helper",
+            "//mediapipe/gpu:gl_simple_shaders",
+            "//mediapipe/gpu:gl_quad_renderer",
+            "//mediapipe/gpu:shader_util",
+        ],
+    }),
+    alwayslink = 1,
+)
+
+
+
+
 cc_library(
     name = "scale_image_utils",
     srcs = ["scale_image_utils.cc"],

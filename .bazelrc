@@ -100,3 +100,9 @@ try-import %workspace%/.configure.bazelrc
 
 # This bazelrc file can be used for user-specific custom build settings.
 try-import %workspace%/.user.bazelrc
+
+
+
+build:wasm --crosstool_top=@emsdk//emscripten_toolchain:everything
+build:wasm --cpu=wasm
+build:wasm --host_crosstool_top=@bazel_tools//tools/cpp:toolchain

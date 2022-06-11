@@ -61,6 +61,7 @@ done
 echo "app_dir: $app_dir"
 echo "out_dir: $out_dir"
 
+
 declare -a bazel_flags
 
 apps="${app_dir}/*"
@@ -78,12 +79,15 @@ for app in ${apps}; do
     target="${app}:${target_name}_cpu"
 
     echo "=== Target: ${target}"
+    
+
 
     if [[ $run_only == false ]]; then
       bazel_flags=("${default_bazel_flags[@]}")
       bazel_flags+=(${target})
 
-      bazelisk "${bazel_flags[@]}"
+
+      bazel "${bazel_flags[@]}"
       cp -f "${bin_dir}/${app}/"*"_cpu" "${out_dir}"
     fi
     if [[ $build_only == false ]]; then

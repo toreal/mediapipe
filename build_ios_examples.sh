@@ -71,7 +71,7 @@ for app in ${apps}; do
       bazel_flags+=(--linkopt=-s)
     fi
 
-    bazelisk "${bazel_flags[@]}"
+    bazel "${bazel_flags[@]}"
     cp -f "${bin_dir}/${app}/"*".ipa" "${out_dir}"
   fi
 done

@@ -109,7 +109,7 @@ for app in ${apps}; do
           if [[ ${category} != "shoe" ]]; then
             bazel_flags_extended+=(--define ${category}=true)
           fi
-          bazelisk "${bazel_flags_extended[@]}"
+          bazel "${bazel_flags_extended[@]}"
           cp -f "${bin}" "${apk}"
         fi
         apks+=(${apk})
@@ -120,7 +120,7 @@ for app in ${apps}; do
         if [[ ${app_name} == "templatematchingcpu" ]]; then
           switch_to_opencv_4
         fi
-        bazelisk "${bazel_flags[@]}"
+        bazel "${bazel_flags[@]}"
         cp -f "${bin}" "${apk}"
         if [[ ${app_name} == "templatematchingcpu" ]]; then
           switch_to_opencv_3

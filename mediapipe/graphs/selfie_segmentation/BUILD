@@ -43,6 +43,7 @@ cc_library(
         "//mediapipe/calculators/core:flow_limiter_calculator",
         "//mediapipe/calculators/image:recolor_calculator",
         "//mediapipe/modules/selfie_segmentation:selfie_segmentation_cpu",
+        "//mediapipe/calculators/image:background_masking_calculator"
     ],
 )
 
