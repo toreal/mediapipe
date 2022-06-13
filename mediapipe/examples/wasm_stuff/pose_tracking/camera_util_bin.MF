@@ -1,0 +1,3 @@
+javascript/closure/base.js
+third_party/javascript/tslib/tslib_closure.js
+third_party/mediapipe/web/solutions/camera_util/camera_util.closure.js

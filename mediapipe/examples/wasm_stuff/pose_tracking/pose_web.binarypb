@@ -1,0 +1,2 @@
+
+yPoseTrackingSubgraphIMAGE:input_frames_gpu"LANDMARKS:pose_landmarks"NORM_RECT:pose_rect"DETECTIONS:pose_detectionsRinput_frames_gpuXdrApplicationThreadExecutor
