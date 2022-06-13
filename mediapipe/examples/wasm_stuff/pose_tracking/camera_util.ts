@@ -1,5 +1,4 @@
 
-
 export interface CameraOptions {
     video: HTMLVideoElement;
     onFrame: () => Promise<void>| null;
