@@ -21,20 +21,15 @@ licenses(["notice"])
 
 package(default_visibility = ["//visibility:public"])
 
-cc_library(
-    name = "pose_tracking_gpu_deps",
-    deps = [
-        "//mediapipe/calculators/core:constant_side_packet_calculator",
-        "//mediapipe/calculators/core:flow_limiter_calculator",
-        "//mediapipe/graphs/pose_tracking/subgraphs:pose_renderer_gpu",
-        "//mediapipe/modules/pose_landmark:pose_landmark_gpu",
-    ],
-)
+
 
 mediapipe_binary_graph(
     name = "pose_web",
     graph = "pose_web.pbtxt",
     output_name = "pose_web.binarypb",
-    
+    deps = [ "//mediapipe/graphs/pose_web/subgraphs:pose_tracking",
+    "//mediapipe/graphs/pose_web/subgraphs:pose_detection",
+    "//mediapipe/graphs/pose_web/subgraphs:pose_landmarks",
+    "//mediapipe/graphs/pose_web/subgraphs:pose_renderer",],
 )
 
