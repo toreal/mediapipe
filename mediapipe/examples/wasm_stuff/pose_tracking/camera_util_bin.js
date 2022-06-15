@@ -64,6 +64,8 @@
     function t(a, b) {
       a.a.video.srcObject = b;
       a.a.video.onloadedmetadata = function() {
+        a.a.video.muted =true
+        console.log("muted video")
         a.a.video.play();
         q(a);
       };
