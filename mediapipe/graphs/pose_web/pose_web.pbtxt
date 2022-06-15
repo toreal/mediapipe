@@ -1,0 +1,39 @@
+# Images coming into and out of the graph.
+input_stream: "input_frames_gpu"
+output_stream: "output_frames_gpu"
+
+max_queue_size: 100
+
+executor: {
+  name: ""
+  type: "ApplicationThreadExecutor"
+}
+
+# For selfie-mode testing, we flip horizontally here.
+node: {
+  calculator: "ImageTransformationCalculator"
+  input_stream: "IMAGE_GPU:input_frames_gpu"
+  output_stream: "IMAGE_GPU:input_frames_gpu_flipped"
+  node_options: {
+    [type.googleapis.com/mediapipe.ImageTransformationCalculatorOptions]: {
+      flip_horizontally: true
+    }
+  }
+}
+
+node {
+  calculator: "PoseTrackingSubgraph"
+  input_stream: "IMAGE:input_frames_gpu_flipped"
+  output_stream: "LANDMARKS:pose_landmarks"
+  output_stream: "NORM_RECT:pose_rect"
+  output_stream: "DETECTIONS:pose_detections"
+}
+
+node {
+  calculator: "PoseRendererSubgraph"
+  input_stream: "IMAGE:input_frames_gpu_flipped"
+  input_stream: "LANDMARKS:pose_landmarks"
+  input_stream: "NORM_RECT:pose_rect"
+  input_stream: "DETECTIONS:pose_detections"
+  output_stream: "IMAGE:output_frames_gpu"
+}
